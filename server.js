@@ -4,13 +4,18 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  credentials:true
+}));
 
 const server = http.createServer(app);
+
 const io = new Server(server, {
   cors: {
     // origin: "http://localhost:5173",
-    origin: "https://videochat-one-chi.vercel.app/",
+    origin: "https://videochat-one-chi.vercel.app",
     methods: ["GET", "POST"]
   }
 });
